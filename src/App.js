@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import s from "./App.module.css";
+import Carousel from "./Components/Carousel/Carousel";
+import Textbar from "./Components/Textbar/Textbar";
+import GlobalState from "./Context/Context";
 
 function App() {
+  const [text, setText] = useState("GSAP Sessions #1");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalState.Provider value={{ text, setText }}>
+      <div className={s.container}>
+        <Textbar />
+        <Carousel />
+      </div>
+    </GlobalState.Provider>
   );
 }
 
